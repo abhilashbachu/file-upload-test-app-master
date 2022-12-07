@@ -6,7 +6,8 @@ export default class FileUpload extends Component {
     state = {
         fileToUpload: undefined,
         uploadSuccess: undefined,
-        error: undefined
+        error: undefined,
+        ele:undefined
     };
 
     uploadFile() {
@@ -29,6 +30,8 @@ export default class FileUpload extends Component {
                         uploadSuccess: "File upload successfull",
                         error: undefined
                     });
+                    alert("Uploaded the Assignment File successfully");
+                    this.state.ele.value="";
                 })
                 .catch(err => {
                     this.setState({
@@ -53,8 +56,10 @@ export default class FileUpload extends Component {
                                 className="form-control-file"
                                 id="fileUpload"
                                 onChange={e => {
+                                    e.preventDefault();
                                     this.setState({
-                                        fileToUpload: e.target.files[0]
+                                        fileToUpload: e.target.files[0],
+                                        ele:e.target
                                     });
                                 }}
                             />
@@ -73,7 +78,7 @@ export default class FileUpload extends Component {
                             <div>
                                 <span>
                                     {this.state.uploadSuccess
-                                        ? "File Upload Successfully"
+                                        ? ""
                                         : ""}
                                 </span>
                             </div>
